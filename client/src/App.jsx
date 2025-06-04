@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const navItems = [
+    { path: "/login", name: "Login" },
+    { path: "/logout", name: "Logout" },
+    { path: "/profile", name: "Profile" },
+    { path: "/", name: "Give Interview" },
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <nav className="bg-gray-800 px-6 py-4 flex gap-6">
+        {navItems.map((item, index) => (
+          <NavLink
+            key={index}
+            to={item.path}
+            className={({ isActive }) =>
+              `text-lg font-medium transition-colors ${
+                isActive ? "text-yellow-300" : "text-white hover:text-yellow-200"
+              }`
+            }
+          >
+            {item.name}
+          </NavLink>
+        ))}
+      </nav>
 
-export default App
+      <div className="p-6">
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+export default App;
