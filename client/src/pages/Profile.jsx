@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../provider/AuthProvider";
-import ProfileCard from "../components/ProfileCard";
-import ProfileEdit from "../components/ProfileEdit";
+import { AuthContext } from "../ContextProvider/AuthProvider";
+import ProfileCard from "../Components/ProfileCard";
+import ProfileEdit from "../Components/ProfileEdit";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);

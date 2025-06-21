@@ -1,6 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { ResumeContext } from "../ContextProvider/ResumeProvider";
 
 const VoiceToTextAndSpeak = () => {
+  const { isResumeUploaded } = useContext(ResumeContext); 
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const recognitionRef = useRef(null);
@@ -21,7 +23,7 @@ const VoiceToTextAndSpeak = () => {
       const speechToText = e.results[0][0].transcript;
       setTranscript(speechToText);
       speakUserMessage(speechToText);
-      sendTranscriptToServer(speechToText)
+      sendTranscriptToServer(speechToText);
     };
 
     recognition.onend = () => {
@@ -32,25 +34,19 @@ const VoiceToTextAndSpeak = () => {
   }, []);
 
   const speakUserMessage = (text) => {
-    if (!window.speechSynthesis) {
-      alert("Speech Synthesis not supported in this browser.");
-      return;
-    }
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
   };
+
   const sendTranscriptToServer = async (text) => {
     try {
-      const response = await fetch("http://localhost:5000/transcript", {
+      await fetch("http://localhost:5000/transcript", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ message: text }),
       });
-
-      const data = await response.json();
-      alert("Server responded:", data);
     } catch (error) {
       alert("Error sending transcript:", error);
     }
@@ -82,26 +78,30 @@ const VoiceToTextAndSpeak = () => {
           Click the button below, and start the interview...
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 mt-4">
-          <button
-            onClick={handleStartListening}
-            className={`px-6 py-3 text-white rounded-lg text-base font-medium transition ${
-              isListening
-                ? "bg-gray-500 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
-            }`}
-            disabled={isListening}
-          >
-            {isListening ? "Listening..." : "Start Speaking"}
-          </button>
-
-          {isListening && (
+        <div className="flex flex-col justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 mt-4">
             <button
-              onClick={handleStopListening}
-              className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg text-base font-medium transition"
+              onClick={handleStartListening}
+              disabled={!isResumeUploaded || isListening}
+              className={`px-6 py-3 text-white rounded-lg text-base font-medium transition ${
+                isListening || !isResumeUploaded
+                  ? "bg-gray-500 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700"
+              }`}
             >
-              Stop Listening
+              {isListening ? "Listening..." : "Start Speaking"}
             </button>
+            {isListening && (
+              <button
+                onClick={handleStopListening}
+                className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg text-base font-medium transition"
+              >
+                Stop Listening
+              </button>
+            )}
+          </div>
+          {!isResumeUploaded && (
+            <p className="text-center text-red-500">Please upload resume first</p>
           )}
         </div>
 
