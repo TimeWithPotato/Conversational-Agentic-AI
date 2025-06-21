@@ -50,9 +50,9 @@ const VoiceToTextAndSpeak = () => {
       });
 
       const data = await response.json();
-      console.log("Server responded:", data);
+      alert("Server responded:", data);
     } catch (error) {
-      console.error("Error sending transcript:", error);
+      alert("Error sending transcript:", error);
     }
   };
 
