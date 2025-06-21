@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Swal from "sweetalert2";
-import { AuthContext } from "../provider/AuthProvider";
+import { AuthContext } from "../ContextProvider/AuthProvider";
 
 const ProfileEdit = ({ user, onCancel, onSaved }) => {
   const { updateUserProfile } = useContext(AuthContext);

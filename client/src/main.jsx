@@ -5,12 +5,14 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VoiceToTextAndSpeak from "./pages/VoiceToTextAndSpeak.jsx";
 import App from "./Layouts/App.jsx";
-import Login from "./pages/Login.jsx";
-import Profile from "./pages/Profile.jsx";
-import Register from "./pages/Register.jsx";
-import AuthProvider from "./provider/AuthProvider.jsx";
-import Home from "./pages/Home.jsx";
+import Login from "./Pages/Login.jsx";
+import Profile from "./Pages/Profile.jsx";
+import Register from "./Pages/Register.jsx";
+import AuthProvider from "./ContextProvider/AuthProvider.jsx";
+import Home from "./Pages/Home.jsx";
 import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
+import ResumeUpload from "./pages/ResumeUpload.jsx";
+import ResumeProvider from "./ContextProvider/ResumeProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/interview",
-        element: <PrivateRoute><VoiceToTextAndSpeak /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <VoiceToTextAndSpeak />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -35,7 +41,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <PrivateRoute><Profile /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/ResumeUpload",
+        element: (
+          <PrivateRoute>
+            <ResumeUpload />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -43,7 +61,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <ResumeProvider>
+        <RouterProvider router={router} />
+      </ResumeProvider>
     </AuthProvider>
   </StrictMode>
 );

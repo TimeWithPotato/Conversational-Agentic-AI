@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
+import { AuthContext } from "../ContextProvider/AuthProvider";
 import { useContext } from "react";
 const Home = () => {
   const { user } = useContext(AuthContext);

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
+import { AuthContext } from "../ContextProvider/AuthProvider";
 
 const Navbar = () => {
   const { user, Logout } = useContext(AuthContext);
@@ -22,6 +22,7 @@ const Navbar = () => {
       ? [
           { path: "/profile", name: "Profile" },
           { path: "/interview", name: "Interview" },
+          { path: "/ResumeUpload", name: "Upload Resume" },
         ]
       : [
           { path: "/login", name: "Login" },
