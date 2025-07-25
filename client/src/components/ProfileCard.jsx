@@ -2,19 +2,30 @@ const ProfileCard = ({ user, onEdit }) => {
   const { name, email, photoURL } = user;
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="card bg-base-100 w-96 shadow-xl text-white">
-        <figure>
-          <img src={photoURL} alt={`${name}'s profile picture`} />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Name: {name}</h2>
-          <p>Email: {email}</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary" onClick={onEdit}>Edit Profile</button>
-          </div>
-        </div>
+    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl shadow-xl p-8 w-full max-w-md mx-auto min-h-[320px] flex flex-col items-center text-gray-100">
+      <div className="w-32 h-32 mb-6 rounded-full overflow-hidden border-4 border-white/30 shadow-lg">
+        <img
+          src={photoURL}
+          alt={`${name}'s profile picture`}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "https://via.placeholder.com/150?text=No+Photo";
+          }}
+        />
       </div>
+
+      <h2 className="text-2xl font-semibold mb-2 truncate max-w-full text-center">
+        {name}
+      </h2>
+      <p className="mb-6 text-sm break-all text-center opacity-80">{email}</p>
+
+      <button
+        onClick={onEdit}
+        className="bg-teal-500 hover:bg-teal-400 text-white font-semibold px-6 py-2 rounded-full shadow-md transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-300"
+      >
+        Edit Profile
+      </button>
     </div>
   );
 };

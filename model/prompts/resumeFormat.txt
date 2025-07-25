@@ -1,0 +1,41 @@
+You are a professional resume parser.
+
+Your task is to extract structured information from the following raw resume text and return it in **strictly valid JSON format**.
+
+Respond only with JSON, strictly matching this structure and order:
+
+{{
+  "name": "Candidate Full Name",
+  "email": "candidate@email.com",
+  "phone": "+91-XXXXXXX",
+  "skills": ["skill1", "skill2", "..."],
+  "projects": ["project1", "project2", "..."],
+  "certifications": ["cert1", "cert2", "..."],
+  "achievements": ["achievement1", "achievement2", "..."],
+  "education": {{
+    "university": "University Name",
+    "college": "College Name",
+    "degree": ["Ph.D. in Something", "M.Sc. in Something", "B.Sc. in Something"],
+    "gpa": "7.5",
+    "expected_graduation": "May, 2025"
+  }},
+  "M.Sc. Thesis" : ["Thesis1", "Thesis2","..."],
+  "Research Interest": ["interest1", "interest2", "..."],
+  "Experience": ["experience1", "experience2", "..."],
+  "Research/Projects": ["project1", "project2", "..."],
+  "Publications" : ["publication1","publication2","..."],
+  "Honors & Awards" : ["Honors & Awards1","Honors & Awards2","..."]
+}}
+
+Rules:
+1. Use **empty strings ("") or empty arrays ([])** for missing fields.
+2. If multiple degrees exist, include first P.hd then M.Sc and then B.Sc `"education"`, and add the rest under `"Experience"` or `"Research/Projects"` if relevant.
+3. Combine multi-line items into single strings where necessary.
+4. Use the **original wording** from the resume wherever possible.
+5. Do **not** skip or infer information — only include what's clearly stated.
+6. Do **not** add explanations or markdown. Return **only pure JSON**.
+
+Here is the resume:
+---
+{resume_text}
+---
