@@ -8,23 +8,23 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   const userInfo = {
-    name: user?.displayName,
-    email: user?.email,
-    photoURL: user?.photoURL,
+    name: user?.displayName || "No Name",
+    email: user?.email || "No Email",
+    photoURL: user?.photoURL || "No photo",
   };
 
-  if (isEditing) {
-    return (
-      <ProfileEdit
-        user={userInfo}
-        onCancel={() => setIsEditing(false)}
-        onSaved={() => setIsEditing(false)}
-      />
-    );
-  }
-
   return (
-    <ProfileCard user={userInfo} onEdit={() => setIsEditing(true)} />
+    <div className="max-w-3xl mx-auto p-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl shadow-xl mt-12 text-gray-100">
+      {isEditing ? (
+        <ProfileEdit
+          user={userInfo}
+          onCancel={() => setIsEditing(false)}
+          onSaved={() => setIsEditing(false)}
+        />
+      ) : (
+        <ProfileCard user={userInfo} onEdit={() => setIsEditing(true)} />
+      )}
+    </div>
   );
 };
 

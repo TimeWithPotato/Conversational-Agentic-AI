@@ -20,9 +20,7 @@ const Register = () => {
     setWeakPassword(false);
 
     createUser(email.value, password.value)
-      .then(() => {
-        return updateUserProfile({ displayName: name.value });
-      })
+      .then(() => updateUserProfile({ displayName: name.value }))
       .then(() => {
         formRef.current.reset();
         navigate("/interview");
@@ -37,72 +35,71 @@ const Register = () => {
   };
 
   return (
-    <div className="hero bg-white min-h-screen">
-      <div className="hero-content flex-col lg:flex-col">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold text-base-300">
-            Create your account here
-          </h1>
-        </div>
-        <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
-          <form className="card-body" onSubmit={handleRegister} ref={formRef}>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="name"
-                className="input input-bordered"
-                name="name"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="email"
-                className="input input-bordered"
-                name="email"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered"
-                name="password"
-                required
-              />
-              {weakPassword && (
-                <span className="text-red-600">
-                  Password length should be at least 6 characters
-                </span>
-              )}
-              <div>
-                <p className="-mb-2 mt-3">Already have an account?</p>
-                <label className="label">
-                  <Link
-                    to="/login"
-                    className="bg-slate-500 px-3 py-1 rounded text-sm text-white hover:bg-slate-700 hover:scale-105 transform transition duration-300 font-semibold shadow-md"
-                  >
-                    Login
-                  </Link>
-                </label>
-              </div>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Register</button>
-            </div>
-          </form>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4">
+      <div className="max-w-md w-full rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl p-8 border border-slate-600">
+        <h1 className="text-4xl font-extrabold text-white text-center mb-6">
+          Create Your Account
+        </h1>
+        <form className="space-y-5" onSubmit={handleRegister} ref={formRef}>
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-1">
+              Name
+            </label>
+            <input
+              type="text"
+              placeholder="Your name"
+              className="w-full px-4 py-2 rounded-lg bg-slate-800 text-white border border-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="name"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              className="w-full px-4 py-2 rounded-lg bg-slate-800 text-white border border-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="email"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              className="w-full px-4 py-2 rounded-lg bg-slate-800 text-white border border-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="password"
+              required
+            />
+            {weakPassword && (
+              <p className="text-red-400 text-sm mt-1">
+                Password must be at least 6 characters long.
+              </p>
+            )}
+          </div>
+          <div className="text-sm text-slate-300 mt-2">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-blue-400 hover:text-blue-300 font-semibold underline underline-offset-2"
+            >
+              Login
+            </Link>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-500 text-white font-bold rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+            >
+              Register
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

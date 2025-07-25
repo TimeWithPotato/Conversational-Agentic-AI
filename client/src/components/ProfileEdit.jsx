@@ -9,12 +9,17 @@ const ProfileEdit = ({ user, onCancel, onSaved }) => {
     Swal.fire({
       title: "Edit Profile",
       html: `
-        <input type="text" id="swal-name" class="swal2-input" value="${user.name || ""}" placeholder="Name" />
-        <input type="text" id="swal-photo" class="swal2-input" value="${user.photoURL || ""}" placeholder="Photo URL" />
+        <input type="text" id="swal-name" class="swal2-input custom-swal-input" value="${user.name || ""}" placeholder="Name" />
+        <input type="text" id="swal-photo" class="swal2-input custom-swal-input" value="${user.photoURL || ""}" placeholder="Photo URL" />
       `,
       confirmButtonText: "Save",
       showCancelButton: true,
       focusConfirm: false,
+      customClass: {
+        popup: "custom-swal-popup",
+        confirmButton: "custom-swal-btn",
+        cancelButton: "custom-swal-btn-cancel",
+      },
       preConfirm: () => {
         const name = document.getElementById("swal-name").value;
         const photo = document.getElementById("swal-photo").value;
@@ -22,18 +27,18 @@ const ProfileEdit = ({ user, onCancel, onSaved }) => {
         return updateUserProfile({ displayName: name, photoURL: photo })
           .then(() => {
             Swal.fire("Updated!", "", "success");
-            onSaved(); // notify parent to exit edit mode
+            onSaved();
           })
           .catch(() => Swal.fire("Failed to update!", "", "error"));
       },
     }).then((result) => {
       if (result.dismiss === Swal.DismissReason.cancel) {
-        onCancel(); // notify parent to exit edit mode if canceled
+        onCancel();
       }
     });
   }, []);
 
-  return null; // no UI needed here
+  return null;
 };
 
 export default ProfileEdit;
