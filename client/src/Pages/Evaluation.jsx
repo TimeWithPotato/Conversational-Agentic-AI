@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import "animate.css";
 import { EvaluationContext } from "../ContextProvider/EvaluationProvider";
 
+const apiBaseUrl = import.meta.env.VITE_API_URL;
 const Evaluation = () => {
   const { QnaHistory } = useContext(QnaHistoryContext);
   const { evaluation, setEvaluation } = useContext(EvaluationContext);
@@ -35,7 +36,7 @@ const Evaluation = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/evaluate", {
+      const response = await fetch(`${apiBaseUrl}/api/evaluate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

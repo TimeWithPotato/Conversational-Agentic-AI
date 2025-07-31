@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { ResumeContext } from "../ContextProvider/ResumeProvider";
+const apiBaseUrl = import.meta.env.VITE_API_URL
 
 const RenderValue = ({ value }) => {
   if (Array.isArray(value)) {
@@ -27,6 +28,7 @@ const RenderValue = ({ value }) => {
 };
 
 const ResumeUpload = () => {
+    console.log("This is apiBaseUrl "+apiBaseUrl)
   const [resumeData, setResumeData] = useState(null);
   const [loading, setLoading] = useState(false);
   const { handleResumeUpload } = useContext(ResumeContext);
@@ -64,7 +66,7 @@ const ResumeUpload = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/upload-pdf", {
+      const response = await fetch(`${apiBaseUrl}/api/upload-pdf`, {
         method: "POST",
         body: formData,
       });

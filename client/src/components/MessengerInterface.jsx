@@ -1,3 +1,5 @@
+// client/src/components/MessengerInterface.jsx
+
 import React, { useContext } from 'react';
 import { ChatHistoryContext } from '../ContextProvider/ChatHistoryProvider';
 

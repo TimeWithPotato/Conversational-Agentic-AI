@@ -1,3 +1,5 @@
+// client/src/Pages/VoiceToTextAndSpeak.jsx
+
 import { useState, useContext } from "react";
 import { ResumeContext } from "../ContextProvider/ResumeProvider";
 import { ChatHistoryContext } from "../ContextProvider/ChatHistoryProvider";
@@ -7,6 +9,8 @@ import { removeLastQuestionFromReact } from "../helpers/removeLastQuestionFromRe
 import { QnaHistoryContext } from "../ContextProvider/QnaHistoryProvider";
 import { Mic, Upload, StopCircle, Send } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
+const apiBaseUrl = import.meta.env.VITE_API_URL
 
 const VoiceToTextAndSpeak = () => {
   const { resume } = useContext(ResumeContext);
@@ -62,7 +66,7 @@ const VoiceToTextAndSpeak = () => {
     const payload = { resume, history: updatedChat };
 
     try {
-      const response = await fetch("http://localhost:5000/api/interview", {
+      const response = await fetch(`${apiBaseUrl}/api/interview`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -129,7 +133,7 @@ const VoiceToTextAndSpeak = () => {
     setChatHistory([]);
     setQnaHistory([]);
     try {
-      const response = await fetch("http://localhost:5000/api/interview", {
+      const response = await fetch(`${apiBaseUrl}/api/interview`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ resume, history: [] }),
@@ -186,7 +190,7 @@ const VoiceToTextAndSpeak = () => {
               : "bg-blue-600 hover:bg-blue-700"
           }`}
         >
-          <Upload className="w-5 h-5" />
+          <Upload className="w-3 h-5" />
           {isResumeSending
             ? "Sending Resume..."
             : isResumeSendToLlm
