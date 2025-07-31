@@ -8,10 +8,13 @@ const ProfileCard = ({ user, onEdit }) => {
           src={photoURL}
           alt={`${name}'s profile picture`}
           className="w-full h-full object-cover"
+<<<<<<< Updated upstream
+=======
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "https://via.placeholder.com/150?text=No+Photo";
+            e.target.src = "#";
           }}
+>>>>>>> Stashed changes
         />
       </div>
 
