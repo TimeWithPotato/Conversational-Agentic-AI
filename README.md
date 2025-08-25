@@ -95,7 +95,7 @@ Run the Python service:
 
     python app.py
 
-➡️ The model service will usually run on **http://127.0.0.1:5001**.
+➡️ The model service will usually run on **http://127.0.0.1:5273**.
 
 ---
 
@@ -105,7 +105,7 @@ At this point, you should have **three terminals** open and running:
 
 1. **Client (Frontend)** → http://localhost:5173  
 2. **Server (Node.js Backend)** → http://localhost:5000  
-3. **Model Service (Python)** → http://127.0.0.1:5001  
+3. **Model Service (Python)** → http://127.0.0.1:5273  
 
 The application is now fully functional in development mode.
 
