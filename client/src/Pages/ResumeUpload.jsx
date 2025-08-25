@@ -157,6 +157,10 @@ const ResumeUpload = () => {
               // Custom layout for education
               if (key.toLowerCase() === "education") {
                 const { degree = [], university = "", college = "" } = data;
+
+                if(!Array.isArray(degree)){
+                  degree = degree ? [degree] : [];
+                }
                 return (
                   <div key={key} className="mb-4 md:col-span-2">
                     <h3 className="text-lg font-semibold capitalize mb-2">
