@@ -14,7 +14,6 @@ import Home from "./Pages/Home.jsx";
 import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 import ResumeUpload from "./Pages/ResumeUpload.jsx";
 import ResumeProvider from "./ContextProvider/ResumeProvider.jsx";
-import MinimalSpeechApp from "./Pages/Minimal.jsx";
 import ChatHistoryProvider from "./ContextProvider/ChatHistoryProvider.jsx";
 import ParentInterViewContainer from "./Layouts/ParentInterViewContainer.jsx";
 import Evaluation from "./Pages/MockInterviewResult.jsx";
@@ -26,10 +25,6 @@ import { InterviewProvider } from "./ContextProvider/InterviewProvider.jsx";
 import IntervieweesList from "./Pages/IntervieweesList.jsx";
 
 const router = createBrowserRouter([
-  {
-    path: "/minimal",
-    element: <MinimalSpeechApp />,
-  },
   {
     path: "/",
     element: <App />,
