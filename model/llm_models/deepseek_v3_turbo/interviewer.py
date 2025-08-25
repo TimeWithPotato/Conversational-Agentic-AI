@@ -1,3 +1,4 @@
+from cmd import PROMPT
 import json
 import requests
 import re
@@ -13,6 +14,8 @@ headers = {
     "Authorization": f"Bearer {HF_API_TOKEN}",
     "Content-Type": "application/json"
 }
+
+PROMPT_PATH = os.path.join(os.path.dirname(__file__), "../../prompts/interview.txt")
 
 def extract_json(text):
     try:
@@ -39,7 +42,7 @@ def extract_json(text):
 
 
 def interviewer(resume, history):
-    with open("E:/NSU/CSE299/Conversational-Agentic-AI/model/prompts/interview.txt", 'r') as f:
+    with open(PROMPT_PATH, 'r') as f:
         prompt_template = f.read()
 
     filled_prompt = prompt_template.format(resume=resume, history=history)

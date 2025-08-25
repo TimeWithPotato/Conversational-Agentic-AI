@@ -14,6 +14,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
+PROMPT_PATH = os.path.join(os.path.dirname(__file__), "../../prompts/evaluation.txt")
 def extract_json(text):
     try:
         text = text.strip()
@@ -33,7 +34,7 @@ def extract_json(text):
 
 
 def evaluator(qnaHistory):
-    with open("E:/NSU/CSE299/Conversational-Agentic-AI/model/prompts/evaluation.txt", "r") as f:
+    with open(PROMPT_PATH, "r") as f:
         prompt_template = f.read()
         print(prompt_template)
     

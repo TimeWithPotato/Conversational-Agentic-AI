@@ -12,6 +12,7 @@ headers = {
     "Authorization" : f"Bearer {hf_token}"
 }
 
+PROMPT_PATH = os.path.join(os.path.dirname(__file__), "../../prompts/resumeFormat.txt")
 def extract_json(text):
     try:
         start = text.find('{')
@@ -36,7 +37,7 @@ def extract_json(text):
         raise ValueError(f"Failed to extract JSON: {e}")
 
 def resumeFormatter(resumeText):
-    with open("E:/NSU/CSE299/Conversational-Agentic-AI/model/prompts/resumeFormat.txt", "r") as f:
+    with open(PROMPT_PATH, "r") as f:
         prompt_template = f.read()
 
         filled_prompt = prompt_template.format(resume_text = resumeText)
