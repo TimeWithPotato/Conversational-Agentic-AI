@@ -1,15 +1,160 @@
-# 🤖 Conversational Agentic AI for Job Interviews
+# Conversational-Agentic-AI – Installation & Setup Guide
 
-## 📌 Project Overview
-This project aims to develop a **voice-to-voice conversational AI system** that simulates job interviews. The system uses **RAG (Retrieval-Augmented Generation)** and **Large Language Models (LLMs)** to deliver intelligent, personalized responses based on data extracted from a candidate’s CV. The user interacts with the system using voice, and the AI responds with voice as well, enabling a seamless and natural interview experience.
+Follow these steps to set up and run the **Conversational-Agentic-AI** project on your local machine.
+
+---
+
+## 1. Clone or Download the Repository
+- If you cloned the repository, skip extraction.  
+- If you downloaded a `.zip` file, extract it to your preferred directory.
+
+    git clone <repository_url>
+    cd Conversational-Agentic-AI
 
 ---
 
-## 🧠 Key Features
-- **Voice Input & Output**: Converts spoken questions to text and generates spoken responses.
-- **Context-Aware Responses**: Combines general LLM reasoning with personalized retrieval from a vectorized CV database.
-- **RAG Pipeline**: Uses document chunking, vector embedding, and semantic search for relevant CV data.
-- **LLM Integration**: Enhances the conversational AI's ability to reason and respond intelligently.
-- **Custom CV Dataset**: Candidates' CVs are parsed, structured, and used as knowledge base for answering questions.
+## 2. Setup the Client (Frontend)
+
+Navigate to the client directory:
+
+    cd client
+
+Install dependencies:
+
+    npm install
+
+Configure environment variables:  
+- Update the `.env` file inside the `client/` directory.  
+- Add your own credentials and required configurations.  
+
+Example `.env`:
+
+    VITE_API_URL=http://localhost:5000
+    VITE_FIREBASE_KEY=your_firebase_key
+
+Run the client in development mode:
+
+    npm run dev
+
+- The app will run on **http://localhost:5173**.  
+- Press `Ctrl + Click` on the link to open it in your browser.  
+
+➡️ Keep this terminal running.
 
 ---
+
+## 3. Setup the Server (Backend)
+
+Open a new terminal and navigate to the server directory:
+
+    cd server
+
+Install dependencies:
+
+    npm install
+
+Ensure **nodemon** is installed globally (if not, install it):
+
+    npm install -g nodemon
+
+Start the server:
+
+    nodemon index.js
+
+- The server will run on **http://localhost:5000** (or another available port).  
+
+➡️ Keep this terminal running.
+
+---
+
+## 4. Setup the Model service (Python Backend)
+
+Open a new terminal and navigate to the model directory:
+
+    cd model
+
+Create a virtual environment:
+
+    python3 -m venv venv
+
+Activate the virtual environment:
+
+- **Windows:**
+  
+      venv\Scripts\activate
+
+- **Mac/Linux:**
+  
+      source venv/bin/activate
+
+Install Python dependencies:
+
+    pip install -r requirements.txt
+
+Run the Python service:
+
+    python app.py
+
+➡️ The model service will usually run on **http://127.0.0.1:5001**.
+
+---
+
+## 5. Running the Application
+
+At this point, you should have **three terminals** open and running:
+
+1. **Client (Frontend)** → http://localhost:5173  
+2. **Server (Node.js Backend)** → http://localhost:5000  
+3. **Model Service (Python)** → http://127.0.0.1:5001  
+
+The application is now fully functional in development mode.
+
+---
+
+## 6. System Requirements
+
+- **Node.js** (>= 18.x)  
+- **npm** (>= 9.x)  
+- **Python** (>= 3.9)  
+- **pip** (latest recommended)  
+
+For best performance, ensure you are using the latest stable versions.
+
+---
+
+## Notes
+
+- Update the `.env` files with your own credentials (API keys, Firebase, etc.).  
+- If any **port conflicts** occur, modify the `.env` values accordingly.  
+- For smooth workflow, you can optionally use tools like **concurrently** to run client and server together, but keeping them separate is recommended for debugging.  
+
+---
+
+## ⚡ Quick Start (Power Users)
+
+If you already have the required tools installed, you can run everything with these commands:
+
+    # Clone the repo
+    git clone <repository_url>
+    cd Conversational-Agentic-AI
+
+    # --- Client ---
+    cd client
+    npm install
+    npm run dev &
+
+    # --- Server ---
+    cd ../server
+    npm install
+    nodemon index.js &
+
+    # --- Model ---
+    cd ../model
+    python3 -m venv venv
+    source venv/bin/activate   # (Windows: venv\Scripts\activate)
+    pip install -r requirements.txt
+    python app.py
+
+---
+
+✅ Now your **Conversational-Agentic-AI** app should be up and running locally!
