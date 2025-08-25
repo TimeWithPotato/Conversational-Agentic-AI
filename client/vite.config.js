@@ -8,6 +8,6 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     cors: true,
-    allowedHosts: ['c3055156a6e6.ngrok-free.app'], 
+    allowedHosts: [], // Replace with your actual ngrok domain if you have one
   }
 })

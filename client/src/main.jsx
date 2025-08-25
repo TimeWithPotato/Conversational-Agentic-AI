@@ -17,9 +17,13 @@ import ResumeProvider from "./ContextProvider/ResumeProvider.jsx";
 import MinimalSpeechApp from "./Pages/Minimal.jsx";
 import ChatHistoryProvider from "./ContextProvider/ChatHistoryProvider.jsx";
 import ParentInterViewContainer from "./Layouts/ParentInterViewContainer.jsx";
-import Evaluation from "./Pages/Evaluation.jsx";
+import Evaluation from "./Pages/MockInterviewResult.jsx";
 import QnaHistoryProvider from "./ContextProvider/QnaHistoryProvider.jsx";
 import EvaluationProvider from "./ContextProvider/EvaluationProvider.jsx";
+import InterviewRoomWrapper from "./Layouts/InterviewRoomWrapper.jsx";
+import InterviewCallCreator from "./Pages/InterviewCallCreator.jsx";
+import { InterviewProvider } from "./ContextProvider/InterviewProvider.jsx";
+import IntervieweesList from "./Pages/IntervieweesList.jsx";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +78,25 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/interview/:roomId",
+        element: <InterviewRoomWrapper />
+      },
+      {
+        path: "/start-interview",
+        element: (
+          <PrivateRoute>
+            <InterviewCallCreator />
+          </PrivateRoute>)
+      },
+      {
+        path: "/intervieweesList",
+        element: (
+          <PrivateRoute>
+            <IntervieweesList />
+          </PrivateRoute>
+        )
+      }
     ],
   },
 ]);
@@ -84,7 +107,9 @@ createRoot(document.getElementById("root")).render(
         <ChatHistoryProvider>
           <QnaHistoryProvider>
             <EvaluationProvider>
-              <RouterProvider router={router} />
+                <InterviewProvider>
+                  <RouterProvider router={router} />
+                </InterviewProvider>
             </EvaluationProvider>
           </QnaHistoryProvider>
         </ChatHistoryProvider>
