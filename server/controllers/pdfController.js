@@ -10,6 +10,13 @@ const extractPdfText = async (req, res) => {
     const dataBuffer = fs.readFileSync(filePath);
     const data = await pdfParse(dataBuffer);
 
+    const text = data.text || "";
+
+    const words = text.trim().split(/\s+/);
+    const wordCount = words.filter(word => word.length > 0).length
+    
+    console.log(wordCount)
+
     const response = await fetch(`${model_url}/api/format-resume`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
