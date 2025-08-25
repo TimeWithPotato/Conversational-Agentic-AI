@@ -13,61 +13,7 @@ Follow these steps to set up and run the **Conversational-Agentic-AI** project o
 
 ---
 
-## 2. Setup the Client (Frontend)
-
-Navigate to the client directory:
-
-    cd client
-
-Install dependencies:
-
-    npm install
-
-Configure environment variables:  
-- Update the `.env` file inside the `client/` directory.  
-- Add your own credentials and required configurations.  
-
-Example `.env`:
-
-    VITE_API_URL=http://localhost:5000
-    VITE_FIREBASE_KEY=your_firebase_key
-
-Run the client in development mode:
-
-    npm run dev
-
-- The app will run on **http://localhost:5173**.  
-- Press `Ctrl + Click` on the link to open it in your browser.  
-
-➡️ Keep this terminal running.
-
----
-
-## 3. Setup the Server (Backend)
-
-Open a new terminal and navigate to the server directory:
-
-    cd server
-
-Install dependencies:
-
-    npm install
-
-Ensure **nodemon** is installed globally (if not, install it):
-
-    npm install -g nodemon
-
-Start the server:
-
-    nodemon index.js
-
-- The server will run on **http://localhost:5000** (or another available port).  
-
-➡️ Keep this terminal running.
-
----
-
-## 4. Setup the Model service (Python Backend)
+## 2. Setup the Model service (Python Backend)
 
 Open a new terminal and navigate to the model directory:
 
@@ -94,10 +40,72 @@ Install Python dependencies:
 Run the Python service:
 
     python app.py
+    
+Configure environment variables:  
+- Update the `.env` file inside the `model/` directory.  
+- Add your own credentials and required configurations.  
+
 
 ➡️ The model service will usually run on **http://127.0.0.1:5273**.
 
 ---
+
+➡️ Keep this terminal running.
+
+---
+
+## 3. Setup the Server (Backend)
+
+Open a new terminal and navigate to the server directory:
+
+    cd server
+
+Install dependencies:
+
+    npm install
+
+Ensure **nodemon** is installed globally (if not, install it):
+
+    npm install -g nodemon
+
+Start the server:
+
+    nodemon index.js
+    
+Configure environment variables:  
+- Update the `.env` file inside the `server/` directory.  
+- Add your own credentials and required configurations.  
+
+
+- The server will run on **http://localhost:5000** (or another available port).  
+
+➡️ Keep this terminal running.
+
+## 4. Setup the Client (Frontend)
+
+Navigate to the client directory:
+
+    cd client
+
+Install dependencies:
+
+    npm install
+
+Configure environment variables:  
+- Update the `.env` file inside the `client/` directory.  
+- Add your own credentials and required configurations.  
+
+Example `.env`:
+
+    VITE_API_URL=http://localhost:5000
+    VITE_FIREBASE_KEY=your_firebase_key
+
+Run the client in development mode:
+
+    npm run dev
+
+- The app will run on **http://localhost:5173**.  
+- Press `Ctrl + Click` on the link to open it in your browser.  
 
 ## 5. Running the Application
 
